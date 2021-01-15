@@ -1,13 +1,13 @@
-const List = require('../models/Task');
+const Task = require('../models/Task');
 
 module.exports = {
     async create(req, res){
         const {data} = req.body;
-        const {content, status} = data;
+        const {text, status} = data;
         
         const task = await Task.create({
             content: {
-                content,
+                text,
                 status
             }
         });
