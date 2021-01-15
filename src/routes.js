@@ -1,9 +1,9 @@
 const express = require('express');
-const ListController = require('./controller/ListController');
+const TaskController = require('./controller/TaskController');
 
 const router = express.Router();
 
-router.post("/create", ListController.create);
+router.post("/create", TaskController.create);
 
 module.exports = router;
 
