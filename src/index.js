@@ -6,7 +6,8 @@ const router   = require('./routes');
 const app = express();
 mongoose.connect('mongodb+srv://grupo7:7grupo@unect-final-database.a9mqt.mongodb.net/unect-final-database?retryWrites=true&w=majority',
     {
-        useNewUrlParser: true
+        useNewUrlParser: true,
+        useUnifiedTopology: true
     });
 
 app.use(bodyParser.json());
