@@ -14,8 +14,12 @@ module.exports = {
 
         return res.json(task);
     },
-    async fetchTask(req, res) {
+    async fetchTodoTask(req, res) {
         const task = await Task.find({'content.status':'todo'}).sort('-createdAt');
+        return res.json(task);
+    },
+    async fetchDoneTask(req, res) {
+        const task = await Task.find({'content.status':'done'}).sort('-createdAt');
         return res.json(task);
     }
 };
