@@ -2,6 +2,7 @@ const express  = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const router   = require('./routes');
+const cors = require('cors');
 
 const app = express();
 mongoose.connect('mongodb+srv://grupo7:7grupo@unect-final-database.a9mqt.mongodb.net/unect-final-database?retryWrites=true&w=majority',
@@ -10,6 +11,7 @@ mongoose.connect('mongodb+srv://grupo7:7grupo@unect-final-database.a9mqt.mongodb
         useUnifiedTopology: true
     });
 
+app.use(cors())
 app.use(bodyParser.json());
 app.use(router);
 
