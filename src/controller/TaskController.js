@@ -35,7 +35,7 @@ module.exports = {
         return res.json(updated);
     },
     async deleteTask(req, res){
-        const id = req.params.id;
+        const {id} = req.body;
         await Task.findByIdAndDelete(id, (erro,docs) => {
             if(erro){
                 console.log(erro);
