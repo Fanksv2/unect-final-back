@@ -33,5 +33,17 @@ module.exports = {
             new : true
         })
         return res.json(updated);
+    },
+    async deleteTask(req, res){
+        const id = req.params.id;
+        await Task.findByIdAndDelete(id, (erro,docs) => {
+            if(erro){
+                console.log(erro);
+                return res.sendStatus(500)
+            }else{
+                console.log(docs);
+            }
+        })
+        return res.sendStatus(200);
     }
 };
