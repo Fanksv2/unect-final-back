@@ -12,7 +12,7 @@ module.exports = {
                 status
             }
         });
-
+        req.io.emit("create", {});
         return res.json(task);
     },
     async fetchTodoTask(req, res) {
@@ -32,10 +32,11 @@ module.exports = {
         {
             new : true
         })
+        req.io.emit("check");
         return res.json(updated);
     },
     async deleteTask(req, res){
-        const id = req.params.id;
+        const {id} = req.body;
         await Task.findByIdAndDelete(id, (erro,docs) => {
             if(erro){
                 console.log(erro);
@@ -44,6 +45,7 @@ module.exports = {
                 console.log(docs);
             }
         })
+        req.io.emit("delete");
         return res.sendStatus(200);
     }
 };
