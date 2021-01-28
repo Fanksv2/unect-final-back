@@ -17,7 +17,8 @@ const io = require('socket.io')(server, {
 mongoose.connect('mongodb+srv://grupo7:7grupo@unect-final-database.a9mqt.mongodb.net/unect-final-database?retryWrites=true&w=majority',
     {
         useNewUrlParser: true,
-        useUnifiedTopology: true
+        useUnifiedTopology: true,
+        useFindAndModify: false
     });
 
 app.use((req, res, next) => {
