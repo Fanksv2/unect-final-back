@@ -12,7 +12,7 @@ module.exports = {
                 status
             }
         });
-        req.io.emit("create", {});
+        req.io.emit("createTask", {});
         return res.json(task);
     },
     async fetchTodoTask(req, res) {
@@ -32,7 +32,7 @@ module.exports = {
         {
             new : true
         })
-        req.io.emit("check");
+        req.io.emit("checkTask");
         return res.json(updated);
     },
     async deleteTask(req, res){
@@ -41,11 +41,16 @@ module.exports = {
             if(erro){
                 console.log(erro);
                 return res.sendStatus(500)
-            }else{
-                console.log(docs);
             }
+            if(docs){
+                var {status} = docs.content;
+                if(status == "todo"){
+                    req.io.emit("deleteTodo");
+                }else{
+                    req.io.emit("deleteDone");
+                }
+            }  
         })
-        req.io.emit("delete");
         return res.sendStatus(200);
     }
 };
