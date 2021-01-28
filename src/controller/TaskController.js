@@ -43,8 +43,8 @@ module.exports = {
                 return res.sendStatus(500)
             }
             if(docs){
-                var {status} = docs.content;
-                if(status == "todo"){
+                var status = docs.content.get("status");
+                if(status === "todo"){
                     req.io.emit("deleteTodo");
                 }else{
                     req.io.emit("deleteDone");
