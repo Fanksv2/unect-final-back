@@ -52,5 +52,17 @@ module.exports = {
             }  
         })
         return res.sendStatus(200);
+    },
+    async updateTask(req, res) {
+        const {data} = req.body;
+        const {id} = data;
+        const {newText} = data;
+        const updated = await Task.findByIdAndUpdate(id, {
+            "content.text": newText
+        },
+        {
+            new : true
+        })
+        return res.json(updated);
     }
 };
